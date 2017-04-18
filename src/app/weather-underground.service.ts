@@ -4,17 +4,28 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class WeatherUndergroundService {
-  private apikey: String = '50f6ae31331bce3b';
-  private apiurl: String = 'http://api.wunderground.com/api/'+this.apikey+'/';
+  private http: any;
+  private apiKey: string;
+  private conditionsUrl: string;
+  private searchUrl: string;
 
-  constructor(private http: Http) { }
+  constructor(http: Http) {
+    this.http = http; 
+    this.apiKey = '50f6ae31331bce3b';
+    this.conditionsUrl = 'http://api.wunderground.com/api/'+this.apiKey+'/conditions/q';
+    this.searchUrl = 'http://localhost:4200/api/aq?query=';
+}
 
 
-
-  getConditions(){
-    return this.http.get(this.apiurl+'conditions/q/TX/Houston.json')
+  getWeather(city: string, state: string){
+    return this.http.get(this.conditionsUrl +'/'+ state +'/'+ city +'.json')
       .map(res => res.json())
   }
 
+  searchCities(searchStr: string){
+    return this.http.get(this.searchUrl + searchStr)
+      .map(res => res.json())
+  }
+  
 
 }

@@ -1,0 +1,9 @@
+{
+    "/api/*": {
+        "target": "http://autocomplete.wunderground.com",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {"^/api": ""}
+    }
+}
