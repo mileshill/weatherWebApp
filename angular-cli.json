@@ -18,9 +18,13 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/foundation-sites/dist/css/foundation-flex.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/foundation-sites/vendor/jquery/dist/jquery.min.js",
+        "../node_modules/foundation-sites/dist/js/foundation.min.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
