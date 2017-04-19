@@ -1,7 +1,14 @@
 <div class="main">
 
-  <div class="small-12 columns">
+  <div class="small-12 columns" id="city-input">
     <input (keyup)="getQuery()" [(ngModel)]="searchStr" name="searchStr" type="text" value="" placeholder="City"/>
+    
+  </div>
+
+  <div *ngIf="results">
+    <ul>
+      <li *ngFor="let result of results" (click)="setLocation(result)">{{result.name}}</li>
+    </ul>
   </div>
 
   <div class="row" *ngIf="weather">

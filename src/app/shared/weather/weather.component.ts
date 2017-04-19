@@ -7,39 +7,57 @@ import { WeatherUndergroundService } from '../../weather-underground.service';
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent implements OnInit {
-  private city: string;
-  private state: string;
   private weather: any;
   private searchStr: string;
   private results: any;
+  private zmw: string;
 
-  constructor(private weatherService: WeatherUndergroundService) {
-    this.city = 'Houston';
-    this.state = 'TX';
-   }
+  constructor(private weatherService: WeatherUndergroundService) {}
 
   ngOnInit() {
-    this.weatherService.getWeather(this.city, this.state)
+    this.getDefaultCity()
+
+    this.weatherService.getWeather(this.zmw)
       .subscribe(weather => {
         this.weather = weather.current_observation;
-        console.log(weather.current_observation);
       })
 
     
   }
 
-  getWeather(city, state){
-    this.weatherService.getWeather(city, state)
+  // Service call to Weather API
+  // Accepts location object and queries 
+  // using the city zmw
+  getWeather(location){
+    this.weatherService.getWeather(location.zmw)
       .subscribe(weather => {
         this.weather = weather;
       })
   }
 
+  // Called on `keyup` events in `input`
+  // Returns array of city objects matching input
   getQuery(){
     this.weatherService.searchCities(this.searchStr)
       .subscribe(res => {
         this.results = res.RESULTS;
-        console.log(res.RESULTS);
+      })
+  }
+
+  // Initializes Houston, TX as default city
+  getDefaultCity(){
+    this.zmw = '77001.1.99999'; // Houston, Tx
+  }
+
+  // Invoked on `click` events after user city search.
+  // Result.zmw used to update location
+  setLocation(result){
+    this.zmw = result.zmw;
+    this.results = null;
+    
+    this.weatherService.getWeather(this.zmw)
+      .subscribe(weather => {
+        this.weather = weather.current_observation;
       })
   }
 

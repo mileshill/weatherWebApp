@@ -18,3 +18,8 @@ ul {
 .location, .icon, .desc {
     text-align: center;
 }
+
+#city-input{
+    margin-top: 0.5em;
+    padding-top: 1em;
+}
