@@ -9,6 +9,7 @@ import { WeatherComponent } from './shared/weather/weather.component';
 // Route Configuration
 export const routes: Routes = [
     {path: 'settings', component: SettingsComponent},
+    {path: '', redirectTo: '/weather', pathMatch: 'full'},
     {path: 'weather', component: WeatherComponent}
 ];
 
