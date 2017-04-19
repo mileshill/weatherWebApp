@@ -352,7 +352,7 @@ module.exports = "ul {\n  list-style-type: none;\n  padding: 0;\n  margin: 1em;\
 /***/ 673:
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<ul class=\"menu\">\n  <li><a [routerLink]=\"['/weather']\">Weather</a></li>\n  <li><a [routerLink]=\"['/settings']\">Settings</a></li>\n</ul>\n\n  <router-outlet></router-outlet>\n"
+module.exports = "\n\n<ul class=\"menu\">\n  <li><a [routerLink]=\"['/weather']\">Weather</a></li>\n  <!--<li><a [routerLink]=\"['/settings']\">Settings</a></li>-->\n</ul>\n\n  <router-outlet></router-outlet>\n"
 
 /***/ }),
 
